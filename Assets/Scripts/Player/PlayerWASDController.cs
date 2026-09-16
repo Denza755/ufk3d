@@ -16,12 +16,30 @@ namespace Unity.FantasyKingdom
         private CharacterController characterController;
         private Vector2 moveInput;
         private Vector3 velocity;
-
+        private PlayerInput playerInput;
+/*
         void Start()
         {
             characterController = GetComponent<CharacterController>();
             
             // Если камера не привязана вручную, находим главную камеру сцены
+            if (cameraTransform == null && Camera.main != null)
+            {
+                cameraTransform = Camera.main.transform;
+            }
+        }
+*/        
+        void Start()
+        {
+            characterController = GetComponent<CharacterController>();
+            playerInput = GetComponent<PlayerInput>();
+
+            // Принудительно включаем карту действий Player при старте
+            if (playerInput != null && playerInput.actions != null)
+            {
+                playerInput.actions.FindActionMap("Player")?.Enable();
+            }
+        
             if (cameraTransform == null && Camera.main != null)
             {
                 cameraTransform = Camera.main.transform;
@@ -37,6 +55,9 @@ namespace Unity.FantasyKingdom
         public void OnMove(InputValue value)
         {
             moveInput = value.Get<Vector2>();
+            
+            Debug.Log($"OnMove вызван: {moveInput}"); // <-- Добавьте это            
+            
         }
 
         void MovePlayer()
