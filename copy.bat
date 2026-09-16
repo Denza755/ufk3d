@@ -7,7 +7,7 @@ REM  Назначение: C:\L2_Unity_Github
 REM ============================================================
 
 rem  set "SOURCE=C:\L2_Unity\Gawric_3\Gawric_3\l2-unity"
-set "SOURCE=C:\Unity_Fantasy_Kingdom_3D\Fantasy_Kingdom_3D"
+set "SOURCE=C:\Unity_FermLand3D\FermLand3D"
 set "DEST=D:\Unity_Fantasy_Kingdom_3D_github"
 
 REM Проверка существования исходной папки

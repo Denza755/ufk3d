@@ -65,30 +65,10 @@ MonoBehaviour:
       - rid: 8441220343428808712
       - rid: 8441220343428808713
       - rid: 8441220343428808714
-      - rid: 3762898580037697538
-      - rid: 3762898580037697539
+      - rid: 3762898606010925059
+      - rid: 3762898606010925060
     m_RuntimeSettings:
-      m_List:
-      - rid: 1007667572118126762
-      - rid: 1007667572118126765
-      - rid: 1007667572118126766
-      - rid: 1007667572118126768
-      - rid: 1007667572118126769
-      - rid: 1007667572118126770
-      - rid: 1007667572118126772
-      - rid: 1007667572118126773
-      - rid: 1007667572118126774
-      - rid: 1007667572118126776
-      - rid: 1007667572118126777
-      - rid: 1007667572118126778
-      - rid: 1007667572118126779
-      - rid: 4913219895695245312
-      - rid: 8441220343428808705
-      - rid: 8441220343428808709
-      - rid: 8441220343428808710
-      - rid: 8441220343428808713
-      - rid: 8441220343428808714
-      - rid: 3762898580037697539
+      m_List: []
   m_AssetVersion: 10
   m_ObsoleteDefaultVolumeProfile: {fileID: 0}
   m_RenderingLayerNames:
@@ -277,12 +257,12 @@ MonoBehaviour:
       data:
         m_Version: 1
         m_ProbeVolumeDisableStreamingAssets: 0
-    - rid: 3762898580037697538
+    - rid: 3762898606010925059
       type: {class: URPTerrainShaderSetting, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
         m_Version: 0
         m_IncludeTerrainShaders: 1
-    - rid: 3762898580037697539
+    - rid: 3762898606010925060
       type: {class: UniversalRenderPipelineRuntimeTerrainShaders, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
         m_Version: 0
