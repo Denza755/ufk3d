@@ -8,7 +8,8 @@ namespace Unity.FantasyKingdom
     {
         [Header("Ссылки на компоненты")]
         public CinemachineCamera cinemachineCamera;
-    
+        public Transform playerTransform; // Сюда перетащите PT_Boy_Modular_Free_Pack (1)
+        
         [Header("Настройки зума")]
         public float zoomSpeed = 0.05f; 
         public float minDistance = 0f;   
@@ -20,21 +21,36 @@ namespace Unity.FantasyKingdom
         private CinemachineThirdPersonFollow thirdPersonFollow;
         private float xRotation = 0f;
         private float yRotation = 0f;
+        private Vector3 headOffset = new Vector3(0f, 1.5f, 0f); // Смещение на уровень глаз
 
         void Start()
         {
+            // Находим мальчика на сцене автоматически, если забыли привязать вручную
+            if (playerTransform == null)
+            {
+                GameObject player = GameObject.Find("PT_Boy_Modular_Free_Pack (1)");
+                if (player != null) playerTransform = player.transform;
+            }
+
             if (cinemachineCamera != null)
             {
                 thirdPersonFollow = cinemachineCamera.GetComponent<CinemachineThirdPersonFollow>();
             }
 
-            // Блокируем курсор мыши по центру экрана, чтобы он не вылетал из игры
+            // Блокируем курсор
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
 
         void Update()
         {
+            // Системный хак: принудительно удерживаем якорь на уровне глаз мальчика в каждом кадре,
+            // перезаписывая любые баги стандартных скриптов сцены
+            if (playerTransform != null)
+            {
+                transform.position = playerTransform.position + headOffset;
+            }
+
             if (thirdPersonFollow == null) return;
 
             HandleZoom();
@@ -44,10 +60,7 @@ namespace Unity.FantasyKingdom
         void HandleZoom()
         {
             float scrollInput = 0f;
-            if (Mouse.current != null)
-            {
-                scrollInput = Mouse.current.scroll.ReadValue().y;
-            }
+            if (Mouse.current != null) scrollInput = Mouse.current.scroll.ReadValue().y;
 
             if (scrollInput != 0)
             {
@@ -61,18 +74,17 @@ namespace Unity.FantasyKingdom
         {
             if (Mouse.current == null) return;
 
-            // Считываем движение мыши по осям X и Y
             float mouseX = Mouse.current.delta.x.ReadValue() * mouseSensitivity;
             float mouseY = Mouse.current.delta.y.ReadValue() * mouseSensitivity;
 
             yRotation += mouseX;
             xRotation -= mouseY;
-            xRotation = Mathf.Clamp(xRotation, -70f, 70f); // Ограничиваем взгляд вверх/вниз
+            xRotation = Mathf.Clamp(xRotation, -70f, 70f);
 
-            // Вращаем камеру
             transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
-        }    
-        
+        }
+    
+    
     }
 }
 
